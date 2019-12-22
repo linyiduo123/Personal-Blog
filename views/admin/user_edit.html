@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+
+<div class="slide">
+    <ul>
+        <li>用户信息</li>
+    </ul>
+</div>
+<div class="content">
+    <div class="box">
+        <div class="top">修改信息</div>
+        <form action="/admin/edit" method="post" name="form1" >
+            <input type="hidden" name="id" value="{{ user.id }}">
+            <table>
+                <tr>
+                    <td>用户名：</td>
+                    <td><input type="text" class="text" name="username" value="{{ user.username }}"></td>
+                </tr>
+                <tr>
+                    <td>密码：</td>
+                    <td><input type="text" class="text" name="password" value="{{ user.password }}"></td>
+                </tr>
+                <tr>
+                    {% if user.isAdmin %}
+                    <td>取消管理员身份：</td>
+                    <td><input type="checkbox" class="checkbox" name="isAdmin" value="{{ !user.isAdmin }}"/></td>
+                    {% else %}
+                    <td>成为管理员：</td>
+                    <td><input type="checkbox" class="checkbox" name="isAdmin" value="{{ !user.isAdmin }}"></td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="提交" class="button">
+                        <input type="reset" value="重置" class="button">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+

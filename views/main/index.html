@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+{%block conent%}
+  <!--用户文章-->
+  <div class="article-box">
+    {% for content in contents %}
+    <div class="article">
+      <h4>{{content.title}}</h4>
+      <p class="info">
+        作者：{{content.user.username}}
+        时间：{{content.addTime|date('Y年m月d日 H:i:s', -8*60)}}
+        阅读：{{content.view}}
+                     评论：{{content.comments.length}}
+      </p>
+      <p class="intro">{{content.description}}</p>
+      <button class='look-all'><a href="/view?contentid={{content.id}}">阅读全文</a></button>
+    </div>
+    {% endfor %}
+    <ul class="paging">
+      <li class="previous">
+        {% if page <= 1 %}
+          <span>没有上一页了</span>
+        {% else %}
+          <a href="{{location.pathname}}?category={{category}}&page={{page-1}}">上一页 </a>
+        {% endif %}
+      </li>
+      {% if pages > 0 %}
+        <li>{{page}}/{{pages}}</li>
+      {% endif %}
+      <li class="next">
+        {% if page >= pages %}
+          <span>没有下一页了</span>
+        {% else %}
+          <a href="{{location.pathname}}?category={{category}}&page={{page+1}}">下一页 </a>
+        {% endif %}
+      </li>
+    </ul>
+  </div>
+{%endblock%}

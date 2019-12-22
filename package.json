@@ -1,0 +1,26 @@
+{
+  "name": "nodeblog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "mongo": "docker run -p 27017:27017 -td mongo",
+    "execmongo": "docker exec -it 95a6cde75236 bash"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookies": "^0.7.1",
+    "express": "^4.16.3",
+    "jsdom": "^15.2.1",
+    "jsencrypt": "^3.0.0-rc.1",
+    "markdown": "^0.5.0",
+    "mongoose": "^5.0.13",
+    "nodemailer": "^6.4.2",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "swig": "^1.4.2"
+  }
+}
