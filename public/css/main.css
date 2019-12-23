@@ -24,6 +24,12 @@ body {
   /* display: none; */
 }
 
+.login-success .login-first {
+  /* display: none; */
+  margin-bottom: 7px;
+  margin-left: 10px;
+}
+
 .input-group {
   margin: 10px;
 }
@@ -219,6 +225,35 @@ label {
 .paging a,
 .comment-page a {
   color: #666;
+}
+
+.user-edit {
+  background: #FFFFFF;
+  width: 600px;
+}
+
+.user-edit .top {
+  width: 150px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: right;
+  font-size: 27px;
+}
+
+.user-edit .user-form tr {
+  padding: 10px;
+  display: block;
+}
+
+.user-edit .user-form td {
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+}
+
+
+.user-edit .user-form .button-edit {
+  width: 300px;
 }
 
 .focus {

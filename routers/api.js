@@ -129,7 +129,6 @@ router.post("/user/login", (req, res, next) => {
   // 查询数据库是否重名
   User.findOne({
     username: username
-
   }).then((userInfo) => {
     if (!userInfo) {
       responseDate = {
@@ -191,7 +190,6 @@ router.post('/comment', function (req, res) {
 
 // 用户评论
 router.post('/comment/post', function (req, res) {
-
   if (req.body.content == '') {
     responseDate.message = '数据不能为空'
     responseDate.code = '999'

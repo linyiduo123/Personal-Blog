@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
 {%block conent%}
+
 <div class="article-page">
   <div class="article">
     <h4>{{content.title}}</h4>
@@ -32,7 +33,7 @@
         <p class="commit-title"><span>{{comment.username}}</span>
           {% if userInfo._id %}
           <span>{{comment.postTime|date('Y年m月d日 H:i:s', -8*60)}}</span></p>
-          {% endif %}
+        {% endif %}
         <p class="comment-conent">{{comment.content}}</p>
       </div>
     </div>

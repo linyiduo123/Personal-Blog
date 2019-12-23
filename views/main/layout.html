@@ -39,16 +39,16 @@
       {% if userInfo._id %}
       <div class="login-success sign">
         <p>{{userInfo.title}}</p>
-        <p>姓名: <span class="login-name">{{ userInfo.username }}</span></p>
-        <p>邮箱: <span class="login-name">{{ userInfo.email }}</span></p>
-        {% if userInfo.isAdmin %}
-        <p class="login-tips">你好，管理员！<a href="/admin">进入管理界面</a></p>
-        <p class="user-manage">修改个人信息 <a href="/edit">进入个人信息页面</a></p>
-        {% else %}
-        <p class="login-tips">你好，欢迎光临我的博客！</p>
-        <p class="user-manage">修改个人信息 <a href="/edit">进入个人信息页面</a></p>
-        {% endif %}
-        <button class='login-out'>退出</button>
+        <p class="login-first">姓名: <span class="login-name">{{ userInfo.username }}</span></p>
+        <p class="login-first">邮箱: <span class="login-name">{{ userInfo.email }}</span></pclass="login-first>
+          {% if userInfo.isAdmin %}
+          <p class="login-tips">你好，管理员！<a href="/admin">进入管理界面</a></p>
+          <p class="user-manage">修改个人信息 <a href="/edit">进入个人信息页面</a></p>
+          {% else %}
+          <p class="login-tips">你好，欢迎光临我的博客！</p>
+          <p class="user-manage">修改个人信息 <a href="/edit">进入个人信息页面</a></p>
+          {% endif %}
+          <button class='login-out'>退出</button>
       </div>
       {% else %}
       <!--登录-->

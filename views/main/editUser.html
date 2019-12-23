@@ -1,10 +1,10 @@
 {% extends 'layout.html' %}
 {%block conent%}
 
-<div class="content">
+<div class="user-edit">
     <div class="box">
         <div class="top">修改信息</div>
-        <form action="/edit" method="post" name="form1">
+        <form action="/edit" class='user-form' method="post" name="form1">
             <input type="hidden" name="id" value="{{ user.id }}">
             <table>
                 <tr>
@@ -16,7 +16,7 @@
                     <td><input type="text" class="text" name="password" value="{{ user.password }}"></td>
                 </tr>
                 <tr>
-                    <td colspan="2">
+                    <td class="button-edit" colspan="2">
                         <input type="submit" value="提交" class="button">
                         <input type="reset" value="重置" class="button">
                     </td>

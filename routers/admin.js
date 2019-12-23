@@ -4,6 +4,7 @@ const User = require('../models/User')
 const Category = require('../models/Category')
 const Content = require('../models/Content')
 const encrypy = require('../utils/encrypt')
+const sendMessage = require('../utils/sendMessage')
 
 // router.use((req, res, next) => {
 //   if(!req.userInfo.isAdmin) {
@@ -70,6 +71,9 @@ router.post('/edit', function (req, res) {
   }
   User.findByIdAndUpdate(req.body.id.replace(/"/g, ''), req.body, function (err) {
     if (err) {
+      if (err.code == 11000) {
+        return sendMessage.showMessage("用户名不能重复", res)
+      }
       return res.status(500).send('server error')
     }
     res.redirect('user')
