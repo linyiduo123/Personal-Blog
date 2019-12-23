@@ -21,15 +21,15 @@
   <tr>
     <td>{{user._id.toString()}}</td>
     <td>{{user.username}}</td>
-	<td>{{user.password.substring(0,10)}}</td>
+    <td>{{user.password.substring(0,10)}}</td>
     <td>
       {% if user.isAdmin %} 是 {% endif %}
     </td>
-	<td>
+    <td>
       <a href="/admin/edit?id={{ user._id.toString() }}">编辑</a>
       <a href="/admin/delete?id={{ user._id.toString() }}">删除</a>
     </td>
-  </tr> 
+  </tr>
   {% endfor %}
 </table>
 

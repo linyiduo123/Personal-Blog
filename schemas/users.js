@@ -9,4 +9,4 @@ module.exports = new mongoose.Schema({
     type: Boolean,
     default: false
   }
-})    
+})

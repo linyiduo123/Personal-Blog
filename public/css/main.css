@@ -1,73 +1,82 @@
-body{
+body {
   color: #666;
   background: #ddd;
 }
-*{
+
+* {
   margin: 0;
   padding: 0;
 }
-.sign{
+
+.sign {
   padding: 10px 15px;
 }
 
-.login{
+.login {
   /* display: none; */
 }
-.register{
+
+.register {
   display: none;
 }
-.login-success{
+
+.login-success {
   /* display: none; */
 }
-.input-group{
+
+.input-group {
   margin: 10px;
 }
-button{
-    display: inline-block;
-    color: #FFFFFF;
-    background: #1890ff;
-    outline: none;
-    line-height: 1.5;
-    display: inline-block;
-    font-weight: 400;
-    text-align: center;
-    cursor: pointer;
-    background-image: none;
-    border: 1px solid transparent;
-    padding: 0 15px;
-    font-size: 14px;
-    border-radius: 4px;
-    height: 32px;
-    -webkit-user-select: none;
-    user-select: none;
+
+button {
+  display: inline-block;
+  color: #FFFFFF;
+  background: #1890ff;
+  outline: none;
+  line-height: 1.5;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  padding: 0 15px;
+  font-size: 14px;
+  border-radius: 4px;
+  height: 32px;
+  -webkit-user-select: none;
+  user-select: none;
 }
-input{
-    max-width: 400px;
-    color: #666;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    box-sizing: border-box;
-    line-height: 1.42857143;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    outline: none;
-    appearance: none;
-    -webkit-appearance: none;
-    -webkit-tap-highlight-color: #fff;
+
+input {
+  max-width: 400px;
+  color: #666;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  box-sizing: border-box;
+  line-height: 1.42857143;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: #fff;
 }
-input:focus{
-    border-color: #1890ff;
-    box-shadow: 0px 0px 1px #1890FF;
+
+input:focus {
+  border-color: #1890ff;
+  box-shadow: 0px 0px 1px #1890FF;
 }
-label{
+
+label {
   display: inline-block;
   width: 70px;
 }
 
-.head-bg{
+.head-bg {
   width: 100%;
   height: 142px;
   overflow: hidden;
@@ -75,14 +84,14 @@ label{
   background: #0C0705;
 }
 
-.app-main{
+.app-main {
   width: 1000px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
 }
 
-.menu{
+.menu {
   height: 40px;
   background: #FFFFFF;
   display: flex;
@@ -90,7 +99,8 @@ label{
   align-items: center;
   margin-bottom: 20px;
 }
-.menu a{
+
+.menu a {
   color: #666;
   height: 100%;
   display: flex;
@@ -100,77 +110,96 @@ label{
   margin: 0 20px;
 }
 
-.login-box{
+.login-box {
   display: inline-block;
   width: 350px;
   height: 275px;
   background: #FFFFFF;
   margin-bottom: 20px;
 }
-.login-box button{
+
+.login-box button {
   margin: 0 10px;
 }
-.login-tips, .register-tips{
+
+.login-tips,
+.register-tips {
   margin: 20px 10px;
 }
-.login-box .title{
+
+.login-box .title {
   margin: 20px 20px 0;
 }
-.article-box{
+
+.article-box {
   display: inline-block;
   width: 600px;
 }
-.article-box .article{
+
+.article-box .article {
   width: 100%;
   height: 200px;
   background: #FFFFFF;
   margin-bottom: 20px;
 }
-.article-box .article h4{
+
+.article-box .article h4 {
   text-align: center;
   padding: 20px 0;
   font-size: 28px;
 }
-.article-box .article .info{
+
+.article-box .article .info {
   text-align: center;
 }
-.article-box .article p{
+
+.article-box .article p {
   margin: 10px 0;
 }
-.article-box .intro{
+
+.article-box .intro {
   padding-left: 20px;
 }
-.article-box .look-all{
+
+.article-box .look-all {
   margin-top: 10px;
   margin-left: 20px;
 }
-.article-box .look-all a{
+
+.article-box .look-all a {
   color: #FFFFFF;
   text-decoration: none;
 }
 
-.article-page{
+.article-page {
   margin-bottom: 20px;
 }
-.article-page .article{
+
+.article-page .article {
   width: 600px;
   background: #FFFFFF;
 }
-.article-page h4{
+
+.article-page h4 {
   text-align: center;
   padding: 20px 0;
   font-size: 28px;
 }
-.article-page .info{
+
+.article-page .info {
   text-align: center;
 }
-.article-page .article p{
+
+.article-page .article p {
   padding: 20px;
 }
-.user-manage{
+
+.user-manage {
   margin: 20px 10px;
 }
-.paging, .comment-page{
+
+.paging,
+.comment-page {
   height: 45px;
   display: flex;
   justify-content: space-between;
@@ -181,16 +210,18 @@ label{
   margin: 20px 0;
   text-decoration: none;
 }
-.paging a, .comment-page a{
+
+.paging a,
+.comment-page a {
   color: #666;
 }
 
-.focus{
+.focus {
   border-bottom: 1px solid #007BFF;
 }
 
 
-.comment-box{
+.comment-box {
   width: 600px;
   box-sizing: border-box;
   min-height: 100px;
@@ -198,20 +229,24 @@ label{
   padding: 0 20px;
   background: #FFFFFF;
 }
-.comment-box p{
+
+.comment-box p {
   padding: 20px 0;
 }
-.comment-box .title{
+
+.comment-box .title {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.comment-box .comment-group{
+
+.comment-box .comment-group {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.comment-box .comment-area{
+
+.comment-box .comment-area {
   width: 480px;
   height: 40px;
   padding: 10px 5px;
@@ -224,7 +259,8 @@ label{
   -webkit-appearance: none;
   -webkit-tap-highlight-color: #fff;
 }
-.comment-box .comment-btn{
+
+.comment-box .comment-btn {
   width: 120px;
   height: 60px;
   color: #FFFFFF;
@@ -237,23 +273,28 @@ label{
   -webkit-appearance: none;
   background: #1890FF;
 }
-.comment-box .no-login{
+
+.comment-box .no-login {
   color: #fff;
   margin: 10px 0;
   text-align: center;
   background: orange;
 }
-.comment-box .commit-title{
+
+.comment-box .commit-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.comment-box .comment-conent{
+
+.comment-box .comment-conent {
   padding-bottom: 20px;
 }
-.comment-tips{
+
+.comment-tips {
   color: red;
 }
-.checkbox{
+
+.checkbox {
   -webkit-appearance: checkbox;
 }

@@ -7,11 +7,11 @@ function blogAjax(url, data, fn) {
     url: url,
     data: data,
     dataType: "JSON",
-    error: function(data) {
+    error: function (data) {
       // alert('加载异常，请稍后重试')
     },
-    success: function(res) {
-     typeof fn === 'function' && fn(res)
+    success: function (res) {
+      typeof fn === 'function' && fn(res)
     }
   });
 }
@@ -19,12 +19,12 @@ function blogAjax(url, data, fn) {
 $('.go-register').on('click', function () {
   $('.login').hide()
   $('.register').show()
-  $('.login-box').css("height","450px");  
+  $('.login-box').css("height", "450px");
 })
 $('.go-login').on('click', function () {
   $('.register').hide()
   $('.login').show()
-  $('.login-box').css("height","275px");  
+  $('.login-box').css("height", "275px");
 })
 
 $(".send-captcha").on('click', function () {
@@ -58,7 +58,7 @@ $(".register-btn").on('click', function () {
       $('.register-tips').html(res.message)
       $('.register').hide()
       $('.login').show()
-      $('.login-box').css("height","275px");  
+      $('.login-box').css("height", "275px");
     } else {
       $('.register-tips').html(res.message).css('color', 'red')
     }
@@ -86,11 +86,11 @@ $(".login-btn").on('click', function () {
 $(".login-out").on('click', function () {
   var logout = "/api/user/logout"
   $.ajax({
-  	type:"get",
-  	url: logout,
-  	success: function () {
-  	  location.reload()
-  	}
+    type: "get",
+    url: logout,
+    success: function () {
+      location.reload()
+    }
   });
 })
 
@@ -101,21 +101,20 @@ $('.add-category').on('click', function () {
     category: $("#name").val(),
   }
   addCategory(add, data)
+
   function addCategory(url, data) {
     $.ajax({
       type: "POST",
       url: url,
       data: data,
       dataType: "JSON",
-      async:true,
-      error: function(data) {
+      async: true,
+      error: function (data) {
         alert('加载异常，请稍后重试')
       },
-      success: function(res) {
+      success: function (res) {
         console.log(res)
       }
     });
   }
 })
-
-

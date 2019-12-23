@@ -6,6 +6,7 @@ const encrypy = require('../utils/encrypt');
 const nodemailer = require('nodemailer');
 const smtpTransport = require('nodemailer-smtp-transport');
 
+//邮箱信息
 const transport = nodemailer.createTransport(smtpTransport({
     host: 'smtp.163.com', 
     port: 25,
@@ -41,13 +42,12 @@ router.post("/user/captcha", (req, res, next) => {
       html: '<p>' + captchaGenerated + '</p>'
     }, function (error, data) {
         if (error) {
-            console.error(error);
+          //错误显示
         } else {
-            console.log('邮件发送成功');
+          //正确提示
         }
         transport.close();
     });
-    console.log('发送的验证码：' + captchaGenerated);
     res.send(captchaGenerated);
   } else {
     res.send('邮箱格式错误!');
@@ -62,7 +62,6 @@ router.post("/user/register", (req, res, next) => {
   let captcha = req.body.captcha
   let email = req.body.email
 
-  console.log(email);
 
   if (username == '' || password == '') {
     responseDate = {
@@ -80,8 +79,6 @@ router.post("/user/register", (req, res, next) => {
     res.json(responseDate)
     return
   }
-  console.log("输入的验证码：", captcha);
-  console.log("生成的验证码：", captchaGenerated);
   if (captcha != captchaGenerated) {
     responseDate = {
       code: '005',
@@ -95,7 +92,6 @@ router.post("/user/register", (req, res, next) => {
     username: username
   }).then((userInfo) => {
     if (userInfo) {
-      console.log(userInfo)
       responseDate = {
         code: '004',
         message: '用户名已经被注册'

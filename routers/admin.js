@@ -25,9 +25,9 @@ router.get('/user', (req, res) => {
   var page = Number(req.query.page || 1)
   var limit = 2
   var pages = 0
-  
+
   User.countDocuments().then(function (count) {
-    
+
     pages = Math.ceil(count / limit)
     page = Math.min(page, pages) // page最大为pages
     page = Math.max(page, 1) // page 最小为1
@@ -46,65 +46,70 @@ router.get('/user', (req, res) => {
 })
 
 //编辑用户数据
-router.get('/edit',function(req,res){
+router.get('/edit', function (req, res) {
   //1. 在客户端的列表中处理链接问题（需要有 id 参数）
   //获取要编辑的学生 通过id
-  User.findById(req.query.id.replace(/"/g,''),function(err,user){
-      if(err){
-          return res.status(500).send('Server error')
-      }
-      res.render('admin/user_edit',{
-        userInfo: req.userInfo,
-        user:user
-      })
+  User.findById(req.query.id.replace(/"/g, ''), function (err, user) {
+    if (err) {
+      return res.status(500).send('Server error')
+    }
+    res.render('admin/user_edit', {
+      userInfo: req.userInfo,
+      user: user
+    })
   })
 })
 
 //提交用户的数据
-router.post('/edit',function(req,res){
+router.post('/edit', function (req, res) {
   //1. 获取表单数据 req.body
   //2. 通过 id 更新 User.findByIdAndUpdate()
   //3. 重定向到首页
-  if (req.body.password.length <10 ) {
+  if (req.body.password.length < 10) {
     req.body.password = encrypy.encrypt(req.body.password);
   }
-  User.findByIdAndUpdate(req.body.id.replace(/"/g,''),req.body,function(err){
-      if(err){
-          return res.status(500).send('server error')
-      }
-      res.redirect('user')
+  User.findByIdAndUpdate(req.body.id.replace(/"/g, ''), req.body, function (err) {
+    if (err) {
+      return res.status(500).send('server error')
+    }
+    res.redirect('user')
   }).exec()
 })
 
 //删除用户数据
-router.get('/delete',function(req,res){
+router.get('/delete', function (req, res) {
   // 通过 id 查找到对应用户进行删除 User.findByIdAndRemove()
-  User.findByIdAndRemove(req.query.id.replace(/"/g,''),{new: true},function(err){
-      if(err){
-          return res.status(500).send('server error')
-      } 
+  User.findByIdAndRemove(req.query.id.replace(/"/g, ''), {
+    new: true
+  }, function (err) {
+    if (err) {
+      return res.status(500).send('server error')
+    }
   }).exec()
   res.redirect('user')
 })
+
 // 分类首页
 router.get('/category', (req, res) => {
   // 从数据库读取所有用户数据
   var page = Number(req.query.page || 1)
   var limit = 5
   var pages = 0
-  
+
   Category.find().countDocuments().then(function (count) {
-    
+
     pages = Math.ceil(count / limit)
     page = Math.min(page, pages) // page最大为pages
     page = Math.max(page, 1) // page 最小为1
     var skip = (page - 1) * limit
     // sort _id: 1 升序 _id: -1 降序  _id中包含了时间戳
-    Category.find().sort({_id: -1}).limit(limit).skip(skip).then(function (categories) {
+    Category.find().sort({
+      _id: -1
+    }).limit(limit).skip(skip).then(function (categories) {
       res.render('admin/category_index', {
         userInfo: req.userInfo,
         categories: categories,
-        
+
         count: count,
         pages: pages,
         limit: limit,
@@ -116,7 +121,7 @@ router.get('/category', (req, res) => {
 
 // get 增加分类
 router.get('/category/add', (req, res) => {
-  
+
   res.render('admin/category_add', {
     userInfo: req.userInfo
   })
@@ -124,7 +129,7 @@ router.get('/category/add', (req, res) => {
 
 // post 保存分类
 router.post('/category/add', (req, res) => {
-  
+
   var name = req.body.name || ''
   if (name == '') {
     res.render('admin/error', {
@@ -138,11 +143,11 @@ router.post('/category/add', (req, res) => {
     name: name
   }).then(function (rs) {
     if (rs) {
-    	res.render('admin/error', {
-    	  userInfo: req.userInfo,
-    	  message: '分类已经存在了'
-    	})
-    	return Promise.reject()
+      res.render('admin/error', {
+        userInfo: req.userInfo,
+        message: '分类已经存在了'
+      })
+      return Promise.reject()
     } else {
       return new Category({
         name: name
@@ -159,18 +164,18 @@ router.post('/category/add', (req, res) => {
 
 //编辑分类
 router.get('/category/edit', (req, res) => {
-  
+
   var id = req.query.id || ''
-  
+
   Category.findOne({
     _id: id
   }).then(function (category) {
     if (!category) {
-    	res.render('admin/error', {
+      res.render('admin/error', {
         userInfo: req.userInfo,
         message: '分类信息不存在'
       })
-    	return Promise.reject()
+      return Promise.reject()
     } else {
       res.render('admin/category_edit', {
         userInfo: req.userInfo,
@@ -182,11 +187,11 @@ router.get('/category/edit', (req, res) => {
 
 // 保存分类的编辑
 router.post('/category/edit', (req, res) => {
-  
+
   var id = req.query.id || ''
   var name = req.body.name || ''
-  
-   // 判断数据库中是否存在同名分类
+
+  // 判断数据库中是否存在同名分类
   Category.findOne({
     _id: id
   }).then(function (category) {
@@ -206,18 +211,20 @@ router.post('/category/edit', (req, res) => {
         return Promise.reject()
       } else {
         return Category.findOne({
-          _id: {$ne: id},
+          _id: {
+            $ne: id
+          },
           name: name
         })
       }
     }
   }).then(function (samecategory) {
     if (samecategory) {
-    	res.render('admin/error', {
-    	  userInfo: req.userInfo,
+      res.render('admin/error', {
+        userInfo: req.userInfo,
         message: '数据库中已经存在同名分类',
-    	})
-    	return Promise.reject()
+      })
+      return Promise.reject()
     } else {
       return Category.update({
         _id: id
@@ -237,7 +244,7 @@ router.post('/category/edit', (req, res) => {
 
 //分类的删除
 router.get('/category/delete', (req, res) => {
-  
+
   var id = req.query.id || ''
   Category.remove({
     _id: id
@@ -252,26 +259,27 @@ router.get('/category/delete', (req, res) => {
 
 // 内容首页
 router.get('/content', (req, res) => {
-    // 从数据库读取所有用户数据
+  // 从数据库读取所有用户数据
   var page = Number(req.query.page || 1)
   var limit = 5
   var pages = 0
-  
+
   Content.find().countDocuments().then(function (count) {
-    
+
     pages = Math.ceil(count / limit)
     page = Math.min(page, pages) // page最大为pages
     page = Math.max(page, 1) // page 最小为1
     var skip = (page - 1) * limit
     // sort _id: 1 升序 _id: -1 降序  _id中包含了时间戳
     // populate('category') 关联字段 将id映射为对应的分类 在content.js category中设置
-    Content.find().sort({_id: -1}).limit(limit).skip(skip).populate(['category', 'user']).then(function (contents) {
-      
-      console.log(contents)
+    Content.find().sort({
+      _id: -1
+    }).limit(limit).skip(skip).populate(['category', 'user']).then(function (contents) {
+
       res.render('admin/content_index', {
         userInfo: req.userInfo,
         contents: contents,
-        
+
         count: count,
         pages: pages,
         limit: limit,
@@ -283,8 +291,10 @@ router.get('/content', (req, res) => {
 
 // 内容添加
 router.get('/content/add', (req, res) => {
-  
-  Category.find().sort({_id: -1}).then((categories) => {
+
+  Category.find().sort({
+    _id: -1
+  }).then((categories) => {
     res.render('admin/content_add', {
       userInfo: req.userInfo,
       categories: categories
@@ -295,13 +305,13 @@ router.get('/content/add', (req, res) => {
 
 // 内容保存
 router.post('/content/add', (req, res) => {
-  
+
   if (req.body.title == '') {
-  	res.render('admin/error', {
+    res.render('admin/error', {
       userInfo: req.userInfo,
       message: '标题不能为空'
     })
-  	return
+    return
   }
   if (req.body.content == '') {
     res.render('admin/error', {
@@ -328,14 +338,16 @@ router.post('/content/add', (req, res) => {
 
 //内容编辑
 router.get('/content/edit', (req, res) => {
-  
+
   var id = req.query.id || ''
   var categories = []
   // 先查找分类，后查找内容
-  Category.find().sort({_id: -1}).then((rs) => {
-    
+  Category.find().sort({
+    _id: -1
+  }).then((rs) => {
+
     categories = rs
-    
+
     Content.findOne({
       _id: id
     }).then(function (content) {
@@ -358,10 +370,10 @@ router.get('/content/edit', (req, res) => {
 
 // 保存编辑的内容
 router.post('/content/edit', (req, res) => {
-  
+
   var id = req.query.id || ''
-  
-    if (req.body.title == '') {
+
+  if (req.body.title == '') {
     res.render('admin/error', {
       userInfo: req.userInfo,
       message: '标题不能为空'
@@ -375,7 +387,7 @@ router.post('/content/edit', (req, res) => {
     })
     return
   }
-  
+
   Content.update({
     _id: id
   }, {
@@ -391,12 +403,12 @@ router.post('/content/edit', (req, res) => {
       url: '/admin/content/edit?id=' + id
     })
   })
-  
+
 })
 
 //删除内容
 router.get('/content/delete', (req, res) => {
-  
+
   var id = req.query.id || ''
   Content.remove({
     _id: id

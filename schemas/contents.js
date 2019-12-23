@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 
 // 内容表结构
 module.exports = new mongoose.Schema({
-  
+
   // 关联字段
   category: {
     type: mongoose.Schema.Types.ObjectId,
