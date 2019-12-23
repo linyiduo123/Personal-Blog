@@ -8,12 +8,12 @@ const smtpTransport = require('nodemailer-smtp-transport');
 
 //邮箱信息
 const transport = nodemailer.createTransport(smtpTransport({
-    host: 'smtp.163.com', 
-    port: 25,
-    auth: {
-        user: 'hznulin@163.com',
-        pass: 'linyiduo123123'
-    }
+  host: 'smtp.163.com',
+  port: 25,
+  auth: {
+    user: 'hznulin@163.com',
+    pass: 'linyiduo123123'
+  }
 }));
 
 
@@ -41,12 +41,12 @@ router.post("/user/captcha", (req, res, next) => {
       subject: 'Blog captcha',
       html: '<p>' + captchaGenerated + '</p>'
     }, function (error, data) {
-        if (error) {
-          //错误显示
-        } else {
-          //正确提示
-        }
-        transport.close();
+      if (error) {
+        //错误显示
+      } else {
+        //正确提示
+      }
+      transport.close();
     });
     res.send(captchaGenerated);
   } else {
@@ -129,10 +129,10 @@ router.post("/user/login", (req, res, next) => {
   // 查询数据库是否重名
   User.findOne({
     username: username
-    
+
   }).then((userInfo) => {
     if (!userInfo) {
-       responseDate = {
+      responseDate = {
         code: '004',
         message: '用户不存在'
       }
@@ -140,27 +140,27 @@ router.post("/user/login", (req, res, next) => {
       return
     }
     // 用户名和密码正确
-    if(encrypy.decrypt(userInfo.password) == password ){
-	responseDate = {
-	code: '010',
-	message: '登录成功',
-	userInfo: {
-	_id: userInfo._id,
-	username: userInfo.username,
-	email: userInfo.email
-	}
-	}
-	req.cookies.set('userInfo', JSON.stringify({
-	_id: userInfo._id,
-	username: userInfo.username,
-	email: userInfo.email
-	}))
+    if (encrypy.decrypt(userInfo.password) == password) {
+      responseDate = {
+        code: '010',
+        message: '登录成功',
+        userInfo: {
+          _id: userInfo._id,
+          username: userInfo.username,
+          email: userInfo.email
+        }
+      }
+      req.cookies.set('userInfo', JSON.stringify({
+        _id: userInfo._id,
+        username: userInfo.username,
+        email: userInfo.email
+      }))
     }
-//密码错误
-    else{
+    //密码错误
+    else {
       responseDate = {
         code: '020',
-        message:'密码错误'
+        message: '密码错误'
       }
     }
     res.json(responseDate)
@@ -180,25 +180,25 @@ router.post('/comment', function (req, res) {
   var contentid = req.body.contentid || ''
   // 查询文章内容
   Content.findOne({
-      _id: contentid
+    _id: contentid
   }).then(function (content) {
-      responseDate.data = content
-      responseDate.code = '666'
-      res.json(responseDate)
-      return
+    responseDate.data = content
+    responseDate.code = '666'
+    res.json(responseDate)
+    return
   })
 })
 
 // 用户评论
 router.post('/comment/post', function (req, res) {
-  
+
   if (req.body.content == '') {
-  	responseDate.message = '数据不能为空'
+    responseDate.message = '数据不能为空'
     responseDate.code = '999'
     res.json(responseDate)
     return
   }
-  
+
   // 内容id
   var contentid = req.body.contentid || ''
   var postDate = {
@@ -206,7 +206,7 @@ router.post('/comment/post', function (req, res) {
     postTime: new Date(),
     content: req.body.content
   }
-  
+
   // 查询文章内容
   Content.findOne({
     _id: contentid

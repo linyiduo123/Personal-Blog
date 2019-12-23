@@ -30,7 +30,9 @@
     <div class="comment-list">
       <div class="comment-item">
         <p class="commit-title"><span>{{comment.username}}</span>
+          {% if userInfo._id %}
           <span>{{comment.postTime|date('Y年m月d日 H:i:s', -8*60)}}</span></p>
+          {% endif %}
         <p class="comment-conent">{{comment.content}}</p>
       </div>
     </div>
