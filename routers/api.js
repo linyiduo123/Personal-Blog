@@ -16,7 +16,6 @@ const transport = nodemailer.createTransport(smtpTransport({
   }
 }));
 
-
 let captchaGenerated = "";
 
 var responseDate
@@ -48,9 +47,13 @@ router.post("/user/captcha", (req, res, next) => {
       }
       transport.close();
     });
-    res.send(captchaGenerated);
+    res.send({captchaGenerated: captchaGenerated});
   } else {
-    res.send('邮箱格式错误!');
+    responseDate = {
+      code: '012',
+      message: '邮箱格式错误!'
+    }
+    res.json(responseDate);
   }
 });
 
