@@ -12,7 +12,7 @@ const transport = nodemailer.createTransport(smtpTransport({
   port: 25,
   auth: {
     user: 'hznulin@163.com',
-    pass: 'linyiduo123123'
+    pass: 'hznulyd123'
   }
 }));
 
