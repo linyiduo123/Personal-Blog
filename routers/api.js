@@ -8,11 +8,12 @@ const smtpTransport = require('nodemailer-smtp-transport');
 
 //邮箱信息
 const transport = nodemailer.createTransport(smtpTransport({
-  host: 'smtp.163.com',
-  port: 25,
+  host: 'smtp.qq.com',
+  port: 465,
+  secureConnection: true,
   auth: {
-    user: 'hznulin@163.com',
-    pass: 'hznulyd123'
+    user: '632781087@qq.com',
+    pass: 'zpzmpafahriubffg'
   }
 }));
 
@@ -35,7 +36,7 @@ router.post("/user/captcha", (req, res, next) => {
 
   if (/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/.test(email)) {
     transport.sendMail({
-      from: 'hznulin@163.com',
+      from: '"localhost"<632781087@qq.com>',
       to: email,
       subject: 'Blog captcha',
       html: '<p>' + captchaGenerated + '</p>'

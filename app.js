@@ -1,9 +1,3 @@
-/**
-* 应用程序的入口文件
-* Created by wtniu on 2018-04-11.
-* Copyright 2018 wtniu. All rights reserved.
-*/
-
 // 加载模块
 const express = require('express')
 const swig = require('swig')
